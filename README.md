@@ -65,7 +65,7 @@ Given the imbalance in target lables - 41 labelled as not depressed and 80 label
 
 It is notable that the classical tree-based algorithm performed better than both neural networks. Likely, this has to do with how the data was encoded before fed to the models; the RFE dataset included ordinally encoded predictor variables, which in the error analysis are shown to seemingly have a strong influence in whether a target variable is predicted correctly.
 
-Moreover, the despite using a similar workflow in terms of feature selection and oversampling, the same Adaboost classifier in my exercise did not reach the level of accuracy it did in the research paper. Possibly this is due to how the textual data was handled during preprocessing (one-hot encoding/ordinal encoding versus text vectorisation).
+Moreover, despite using a similar workflow in terms of feature selection and oversampling, the same Adaboost classifier in my exercise did not reach the level of accuracy it did in the research paper. Possibly this is due to how the textual data was handled during preprocessing (one-hot encoding/ordinal encoding versus text vectorisation).
 
 ### Most important features
 
