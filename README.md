@@ -51,7 +51,7 @@ The dataset is based on the survey of Bangladeshi citizens to assess the depress
 
 ## Results
 ### Disclaimer
-The information the algorithms return about the most predictive features for developing depression should **not** be taken uncritically. First and foremost, reliable results can be returned only, and only, by qualified professionals in the field (psychologists and psychiatrists). Moreover, the data has been gathered in one South Asian country - although the BDC checklist seems rather culture-proof, it seems to me likely that given the differences in values around different cultures of the world, such as the West, different factors might contribute more to the development of depression in some places than others.
+The information the algorithms return about the most predictive features for developing depression should **not** be taken at face value. Reliable results can be returned only, and only, through the analysis performed by qualified professionals within the relevant field (psychologists and psychiatrists).
 
 ### Model performance
 Given the imbalance in target lables - 41 labelled as not depressed and 80 labelled as depressed - in the test set, I will report the f1 macro average scores of each model:
