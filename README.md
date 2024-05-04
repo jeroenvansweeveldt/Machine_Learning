@@ -1,74 +1,74 @@
-# Machine_Learning
-Repository for the machine learning exam
+# Predicting depression: a machine learning exercise
+## Objective
+This exercise was done at the end of our machine learning classes to get my bearings in the subject matter. The goal was to find out which factors machine learning models deem the most decisive in predicting whether a person will develop depression. Due to the sizeable number of predictor variables, two different feature elimination methods, _SelectKBest_ and _RFE_, were used to prune the least interesting variables from the dataset.
 
-This repository contains the dataset and classifier to predict depression.
+There was a notable imbalance between the target labels. Using _SMOTE_, the minority labels were upsampled to match the majority labels in the training sets.
 
-The dataset is based on the survey of Bangladeshi citizens to assess the depression level of each participant, using the Burns Depression Checklist (BDC). It contains 30 predictor variables and 1 target variable, the latter being the label of whether or not the person was deemed suffering from depression based on the BDC checklist. The categories, as desribed in the dataset's corresponding paper (https://www.sciencedirect.com/science/article/pii/S2666518221000310), are as follows:
+Next, a classical decision tree-based method called _Adaboost_ was used to make predictions. Why a tree-based algorithm? Because these are convenient for retrieving information about which variable or feature had the most weight in the prediction of depression.
 
+Finally, I ran a feedforward neural network using the _Keras/Tensorflow_ framework, to familiarise myself with the technology, and to compare its perfomance against Adaboost. The workflow of this exercise was based on the research paper [An in-depth analysis of machine learning approaches to predict depression](https://www.sciencedirect.com/science/article/pii/S2666518221000310).
 
-AGERNG: Age range (in years) of the participant
+## Structure
+The repository is structured as follows:
+* A map **data** containing the base dataset **depression.csv**, two datasets preprocessed with different techniques of feature elimination, and two plot images of Adaboost's feature importance for each preprocessed dataset.
+* A Jupyter notebook with the preprocessing of the data.
+* A Jupyter notebook for training the classical model Adaboost on both preprocessed datasets.
+* A Jupyter notebook for training the feedforward neural network. 
 
-GENDER: Gender of the participant
+## Data
+The dataset is based on the survey of Bangladeshi citizens to assess the depression level of each participant, using the **Burns Depression Checklist (BDC)**. It contains 30 predictor variables and 1 target variable, the latter being the label of whether or not the person was deemed suffering from depression based on the BDC checklist. The categories, as desribed in the dataset's corresponding paper, are as follows:
+* **AGERNG:** Age range (in years) of the participant.
+* **GENDER:** Participant's gender.
+* **EDU:** Educational level of the participant.
+* **PROF:** Participant's profession.
+* **MARSTS:** Participant's marital status.
+* **RESDPL:** Type (town, village, city) of the residing place of the participant.
+* **LIVWTH:** Whether the participant lives with or without their family.
+* **ENVSAT:** Whether the participant is satisfied with their living environment or not.
+* **POSSAT:** Whether the participant is satisfied with their current position/academic achievements.
+* **FINSTR:** Whether or not the participant experiences any financial stress.
+* **DEBT:** Whether the participant has any debt.
+* **PHYEX:** The participant's frequency of taking physical exercise.
+* **SMOKE:** Whether the participant smokes.
+* **DRINK:** Wether the participant drinks alcohol.
+* **ILLNESS:** Whether the participant is suffering from any serious illnesses.
+* **PREMED:** Whether the participant takes any prescribed medication.
+* **EATDIS:** Whether the participant is suffering from eating disorders like overeating/loss of appetite.
+* **AVGSLP:** Average hours that the participant sleeps at night.
+* **INSOM:** Whether the participant suffers from insomnia.
+* **TSSN:** Average hours of time spent on social network in a day.
+* **WRKPRE:** Current work or study pressure of the participant.
+* **ANXI:** Whether the participant recently suffered from anxiety.
+* **DEPRI:** Whether the participant has recently felt they had been deprived of something they deserve.
+* **ABUSED:** Whether the participant has recently felt abused (physically, sexually, emotionally).
+* **CHEAT:** Whether the participant has recently felt cheated by someone.
+* **THREAT:** Whether the participant has recently faced any life-threatening event.
+* **SUICIDE:** Whether the participant recently suffered suicidal ideation.
+* **INFER:** Whether the participant recently suffered from an inferiority complex.
+* **CONFLICT:** Whether the participant has recently engaged themselves in any kind of conflict with their friends or family.
+* **LOST:** Whether the participant has recently lost someone close to them.
+* **DEPRESSED:** Target variable - whether the participant is depressed or not.
 
-EDU: Educational qualification of the participant
+## Results
+### Disclaimer
+The information the algorithms return about the most predictive features for developing depression should **not** be taken uncritically. First and foremost, reliable results can be returned only, and only, by qualified professionals in the field (psychologists and psychiatrists). Moreover, the data has been gathered in one South Asian country - although the BDC checklist seems rather culture-proof, it seems to me likely that given the differences in values around different cultures of the world, such as the West, different factors might contribute more to the development of depression in some places than others.
 
-PROF: The profession of the participant
-
-MARSTS: Marital status of the participant
-
-RESDPL: Type of the residing place of the participant
-
-LIVWTH: It depicts whether the participant lives with his family or not
-
-ENVSAT: Whether the participant is satisfied with his living environment or not
-
-POSSAT: Whether the participant is satisfied with his current position/ academic achievements
-
-FINSTR: Whether or not the participant has any financial stress
-
-DEBT: Whether the participant has any debt or not
-
-PHYEX: The frequency of taking physical exercises of the participant
-
-SMOKE: Whether the participant smokes or not
-
-DRINK: Whether the participant drinks alcohol or not
-
-ILLNESS: Whether the participant is suffering from any serious illness or not
-
-PREMED: Whether the participant takes any prescribed medication or not
-
-EATDIS: Predictor Whether the participant is suffering from eating disorders like overeating/loss of appetite or not
-
-AVGSLP: Average hours that the participant sleeps at night
-
-INSOM: Whether or not the participant suffers from insomnia
-
-TSSN: Average hours that the participant spends in social network (in a day)
-
-WRKPRE: Current work or study pressure of the participant
-
-ANXI: Whether the participant recently feels anxiety for something or not
-
-DEPRI: Whether or not the participant has recently felt that he/she has been
-
-deprived of something that he/she deserves
-
-ABUSED: Whether the participant has recently felt abused (physically, sexually, emotionally) or not
-
-CHEAT: Whether or not the participant has felt cheated by someone recently
-
-THREAT: Whether or not the participant has faced any life-threatening event recently
-
-SUICIDE: Whether the participant has any suicidal thought recently or not
-
-INFER: Whether the participant recently suffers from inferiority complex or not
-
-CONFLICT Whether or not the participant has recently engaged himself in any kind of conflicts with his friends or family
-
-LOST Whether or not the participant has recently lost someone close to him
-
-DEPRESSED It is the target variable that portrays whether the participant is depressed or not
+### Model performance
+Given the imbalance in target lables - 41 labelled as not depressed and 80 labelled as depressed - in the test set, I will report the f1 macro average scores of each model:
 
 
-The goal of this assignment was to run at least one classical machine learning classifier and at least one neural classifier to predict whether or not the person suffered from depression. Due to personal misjudgments leading to fatal time constraints, this task largely failed: a classical model was built, but its error analysis is incomplete, and a neural classifier is entirely absent. The classifier (Gradient Boosting) that was built was based on the methodology used in the paper. The reason for this being twofold: a)it contained techniques not covered in classes, such as feature selection and boosting methods, and b)so I could compare my results to those in the paper to get an estimation of my abilities.
+| Adaboost (SelectKBest)| Adaboost (RFE) | FFN (SelectKBest)  |  FFN (RFE) |
+| :---: | :---: | :---: | :---: |
+| 0.86  | 0.89 | 0.88  | 0.87 |
+
+It is notable that the classical tree-based algorithm performed better than both neural networks. Likely, this has to do with how the data was encoded before fed to the models; the RFE dataset included ordinally encoded predictor variables, which in the error analysis are shown to seemingly have a strong influence in whether a target variable is predicted correctly.
+
+### Most important features
+
+These predictor variables were considered the most important in the dataset with SelectKBest selected features:
+![feature_importance_skbest](https://github.com/jeroenvansweeveldt/predicting_depression-machine_learning_exercise/assets/98675155/6298da21-5453-4614-970e-8a0f5c8911b6)
+
+These predictor variables were considered the most important in the dataset with RFE selected features:
+![feature_importance_rfe](https://github.com/jeroenvansweeveldt/predicting_depression-machine_learning_exercise/assets/98675155/4c0678ce-5e54-4d4d-ad63-19cc48d54171)
+
+As you can see, there is fairly little consistency in which feature is most predictive of developing depression. One standout feature, however, that remains at a consistent high position, is whether the participant is happy with their living environment or not (ENVSAT).
