@@ -1,6 +1,8 @@
 # Predicting depression: a machine learning exercise
 ## Objective
-This exercise was done at the end of our machine learning classes to get my bearings in the subject matter. The goal was to find out which factors machine learning models deem the most decisive in predicting whether a person will develop depression. Due to the sizeable number of predictor variables, two different feature elimination methods, _SelectKBest_ and _RFE_, were used to prune the least interesting variables from the dataset.
+This exercise was done at the end of our machine learning classes to get my bearings in the subject matter. The goal was to find out which factors machine learning models deem the most decisive in predicting whether a person will develop depression. Although the dataset contains textual data, typical techniques seen in the future course _natural language processing_ such as text vectorisation were not applied here, as we hadn't learnt about that yet at the point of doing this exercise.
+
+Due to the sizeable number of predictor variables, two different feature elimination methods, _SelectKBest_ and _RFE_, were used to prune the least interesting variables from the dataset.
 
 There was a notable imbalance between the target labels. Using _SMOTE_, the minority labels were upsampled to match the majority labels in the training sets.
 
@@ -62,6 +64,8 @@ Given the imbalance in target lables - 41 labelled as not depressed and 80 label
 | 0.86  | 0.89 | 0.88  | 0.87 |
 
 It is notable that the classical tree-based algorithm performed better than both neural networks. Likely, this has to do with how the data was encoded before fed to the models; the RFE dataset included ordinally encoded predictor variables, which in the error analysis are shown to seemingly have a strong influence in whether a target variable is predicted correctly.
+
+Moreover, the despite using a similar workflow in terms of feature selection and oversampling, the same Adaboost classifier in my exercise did not reach the level of accuracy it did in the research paper. Possibly this is due to how the textual data was handled during preprocessing (one-hot encoding/ordinal encoding versus text vectorisation).
 
 ### Most important features
 
