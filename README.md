@@ -75,4 +75,4 @@ These predictor variables were considered the most important in the dataset with
 These predictor variables were considered the most important in the dataset with RFE selected features:
 ![feature_importance_rfe](https://github.com/jeroenvansweeveldt/predicting_depression-machine_learning_exercise/assets/98675155/4c0678ce-5e54-4d4d-ad63-19cc48d54171)
 
-As you can see, there is fairly little consistency in which feature is most predictive of developing depression. One standout feature, however, that remains at a consistent high position, is whether the participant is happy with their living environment or not (ENVSAT).
+As you can see, there is fairly little consistency in which feature is most predictive of developing depression. One standout feature, however, that consistently remains at a high position, is whether the participant is happy with their living environment or not (ENVSAT).
